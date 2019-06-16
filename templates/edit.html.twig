@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edit-car-text{
+            margin-top: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+    <div class="container">
+        <h1 class="edit-car-text">Edit Car!</h1>
+        <div class="row">
+            <form action="{{ path('getCarData') }}" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            Generation:
+                        </td>
+                        <td>
+                            <input name="generation" value="{{ car.generation }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Engine:
+                        </td>
+                        <td>
+                            <input name="engine" value="{{ car.engine }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Drive:
+                        </td>
+                        <td>
+                            <input name="drive" value="{{ car.drive }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Volume:
+                        </td>
+                        <td>
+                            <input name="volume" value="{{ car.volume }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Box:
+                        </td>
+                        <td>
+                            <input name="box" value="{{ car.box }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Image url:
+                        </td>
+                        <td>
+                            <input name="image" value="{{ car.image }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cost:
+                        </td>
+                        <td>
+                            <input name="cost" value="{{ car.cost }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Color:
+                        </td>
+                        <td>
+                            <input name="color" value="{{ car.color }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date:
+                        </td>
+                        <td>
+                            <input required type="date" name="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Model:
+                        </td>
+                        <td>
+                            <select name="model" required>
+                                {% for model in models %}
+                                    <option value="{{ model.title }}">{{ model.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <input TYPE="hidden" name="edit" value="{{ car.id }}">
+                    </tr>
+                </table>
+                <button  type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

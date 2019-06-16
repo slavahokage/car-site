@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .card{
+            margin-top: 5%;
+        }
+        .card-img-top{
+            margin: 1%;
+        }
+
+        .col-lg-4 {
+            margin-top: 1%;
+        }
+
+        img{
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+    <div class="container">
+        <div style="margin-top: 1%">
+            {% for message in app.flashes('edit') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('create') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            {% for car in cars %}
+                <div class="col-lg-4 col-sm-6 portfolio-item bottom">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">{{ car.model.manufacturer.title}} {{ car.model.title }}</a>
+                            </h4>
+                            <a href="#"><img class="card-img-top" src="{{ car.image }}" alt=""></a>
+                            <h5>Generation: {{ car.generation }}</h5>
+                            <h5>Year: {{ car.year.date }}</h5>
+                            <h5>Engine: {{ car.engine }}</h5>
+                            <h5>Drive: {{ car.drive }}</h5>
+                            <h5>Volume: {{ car.volume }}</h5>
+                            <h5>Color: {{ car.color }}</h5>
+                            <h5>Box: {{ car.box }}</h5>
+                            <a class="btn btn-primary btn-lg" href="{{ path('edit', {id:car.id} )}}" role="button">Edit!</a>
+                            <blockquote class="blockquote text-center">
+                                <p class="card-text">Cost: {{ car.cost }}</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
